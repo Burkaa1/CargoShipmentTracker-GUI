@@ -1,0 +1,125 @@
+@startuml CargoShipmentTracker-ClassDiagram
+skinparam class {
+    BackgroundColor<<model>> AliceBlue
+    BackgroundColor<<gui>> Honeydew
+    ArrowColor DarkSlateGray
+    ActorBorderColor black
+    FontSize 12
+}
+
+package "com.cargotracker.model" <<Rectangle>> {
+    interface Insurable {
+        + getInsuranceCost() : double
+    }
+
+    enum ShipmentStatus {
+        PENDING
+        IN_TRANSIT
+        DELIVERED
+        RETURNED
+        + canGoTo(next: ShipmentStatus) : boolean
+    }
+
+    class InvalidStatusTransitionException {
+        - fromStatus : ShipmentStatus
+        - toStatus : ShipmentStatus
+        + getFromStatus()
+        + getToStatus()
+    }
+
+    abstract class Shipment {
+        {static} - counter : int
+        # id : int
+        # sender : String
+        # recipient : String
+        # distanceKm : double
+        # weightKg : double
+        # status : ShipmentStatus
+        + getCost() : double
+        + advanceStatus(next)
+        + getId(), getSender()...
+        + typeLabel() : String {abstract}
+        + getRatePerKm() {abstract}
+        + getMaxWeightKg() {abstract}
+    }
+
+    class StandardShipment {
+        - RATE_PER_KM = 1.5
+        - MAX_WEIGHT_KG = 30.0
+        - INSURANCE_PCT = 0.05
+    }
+
+    class ExpressShipment {
+        - RATE_PER_KM = 3.0
+        - MAX_WEIGHT_KG = 20.0
+        - INSURANCE_PCT = 0.08
+    }
+
+    class SameDayShipment {
+        - RATE_PER_KM = 6.0
+        - MAX_WEIGHT_KG = 10.0
+        - INSURANCE_PCT = 0.12
+    }
+
+    class CargoCompany {
+        - companyName : String
+        - shipments : ArrayList<Shipment>
+        - shipmentById : HashMap<Integer, Shipment>
+        + {static} BY_COST_DESC : Comparator
+        + {static} BY_DISTANCE_DESC : Comparator
+        + {static} BY_STATUS_LIFECYCLE : Comparator
+        + registerShipment(s)
+        + findById(id) : Shipment
+        + getAllShipments() : List<Shipment>
+        + getTotalRevenue(), getTotalInsurance()
+        + saveToFile(File), loadFromFile(File)
+    }
+}
+
+package "com.cargotracker.gui" <<Rectangle>> {
+    class CargoTrackerGUI {
+        + main(args)
+    }
+
+    class MainDashboardFrame {
+        - company : CargoCompany
+        - cardLayout : CardLayout
+        + requestGlobalRefresh()
+    }
+
+    class DashboardPanel
+    class RegisterPanel
+    class ShipmentsPanel
+    class ReportsPanel
+}
+
+Shipment ..|> Insurable
+Shipment "1" *-- "1" ShipmentStatus : has
+Shipment <|-- StandardShipment
+Shipment <|-- ExpressShipment
+Shipment <|-- SameDayShipment
+InvalidStatusTransitionException -- ShipmentStatus
+
+CargoCompany "1" *-- "*" Shipment : manages
+CargoCompany ..> ShipmentStatus : uses
+
+MainDashboardFrame *-- DashboardPanel
+MainDashboardFrame *-- RegisterPanel
+MainDashboardFrame *-- ShipmentsPanel
+MainDashboardFrame *-- ReportsPanel
+
+CargoTrackerGUI ..> MainDashboardFrame : creates
+MainDashboardFrame ..> CargoCompany : holds
+
+note right of ShipmentStatus
+  State Machine enforced here.
+  PENDING → IN_TRANSIT | RETURNED
+  etc.
+end note
+
+note right of CargoCompany
+  Enhanced for GUI:
+  getAllShipments()
+  Persistence methods
+end note
+@enduml

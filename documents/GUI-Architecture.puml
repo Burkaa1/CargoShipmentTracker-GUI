@@ -1,0 +1,49 @@
+@startuml GUI-Architecture
+skinparam component {
+    BackgroundColor<<view>> AliceBlue
+    BackgroundColor<<controller>> Honeydew
+}
+
+package "Presentation (View)" {
+    [MainDashboardFrame] as Frame <<view>>
+    [DashboardPanel]
+    [RegisterPanel]
+    [ShipmentsPanel]
+    [ReportsPanel]
+    [ShipmentDetailDialog]
+    [StatusUpdateDialog]
+}
+
+package "Controller / Coordination" {
+    [CargoTrackerGUI] as Launcher
+}
+
+package "Domain Model" {
+    [CargoCompany]
+    [Shipment hierarchy]
+}
+
+Launcher --> Frame : launches
+Frame *-- DashboardPanel
+Frame *-- RegisterPanel
+Frame *-- ShipmentsPanel
+Frame *-- ReportsPanel
+
+RegisterPanel --> CargoCompany : registerShipment()
+ShipmentsPanel --> CargoCompany : getAllShipments(), findById()
+DashboardPanel --> CargoCompany : getTotalRevenue() etc.
+ReportsPanel --> CargoCompany : getInsuranceByType()
+
+ShipmentsPanel --> StatusUpdateDialog : opens for selected
+StatusUpdateDialog --> Shipment : advanceStatus()
+
+note right of Frame
+  Uses CardLayout + Sidebar
+  for SPA-like navigation
+end note
+
+note bottom of CargoCompany
+  Single source of truth.
+  All panels share one instance.
+end note
+@enduml
