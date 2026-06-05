@@ -1,2 +1,107 @@
-# CargoShipmentTracker-GUI
-Professional Java Swing GUI for Cargo Shipment Tracker. Features a modern dashboard with KPI cards, live cost/insurance preview, interactive sortable JTable with color-coded status badges, status update dialogs, reports, session persistence, and CSV export. Built on a robust OOP model (abstract Shipment, enum state machine, CargoCompany).
+# CargoShipmentTracker - GUI Edition
+
+**Modern Java Swing Graphical User Interface for Professional Cargo Shipment Tracking**
+
+This project extends the original console-based Cargo Shipment Tracker (EE1004 OOP academic project) with a complete, production-ready, website-inspired desktop GUI. The interface emphasizes usability, visual clarity, real-time feedback, and clean architecture while preserving every original OOP principle and functional requirement.
+
+## Key Features
+
+- **Dashboard Overview**: KPI cards (total shipments, revenue, insurance liability, pending/in-transit), quick actions, and recent shipments list.
+- **Intuitive Registration**: Modern form with live cost/insurance preview, dynamic weight limit validation, and instant feedback.
+- **Interactive Shipments Table**: Sortable/filterable JTable with color-coded status badges (amber/blue/green/red), search, view details, and status advancement dialogs.
+- **Reports & Analytics**: Summary statistics and type-wise insurance breakdown.
+- **Professional UX**: Deep navy/teal color scheme, hover effects, consistent spacing, menu bar with save/load/export, status bar.
+- **Data Persistence**: Built-in serialization support (Save/Load session via File menu).
+- **CSV Export**: One-click export of all shipment data.
+- **State Machine Enforcement**: All status transitions validated exactly as in the original enum logic.
+- **No External Dependencies**: Pure Java SE + Swing.
+
+## Project Structure
+
+```
+CargoShipmentTracker-GUI/
+├── README.md
+├── README.txt
+├── src/main/java/com/cargotracker/
+│   ├── model/                  # Original + enhanced model classes (packaged)
+│   │   ├── Shipment.java (abstract + Serializable)
+│   │   ├── StandardShipment.java / ExpressShipment.java / SameDayShipment.java
+│   │   ├── Insurable.java
+│   │   ├── ShipmentStatus.java (enum with canGoTo)
+│   │   ├── InvalidStatusTransitionException.java
+│   │   └── CargoCompany.java (with getAllShipments, save/load, GUI helpers)
+│   └── gui/
+│       ├── CargoTrackerGUI.java (launcher with demo data)
+│       ├── MainDashboardFrame.java (header + sidebar nav + CardLayout)
+│       └── panels/
+│           ├── DashboardPanel.java
+│           ├── RegisterPanel.java (live validation & preview)
+│           ├── ShipmentsPanel.java (JTable + filter + export + dialogs)
+│           ├── ReportsPanel.java
+│           ├── ShipmentDetailDialog.java
+│           └── StatusUpdateDialog.java
+├── docs/
+│   ├── uml/
+│   │   ├── CargoShipmentTracker-ClassDiagram.puml
+│   │   └── GUI-Architecture.puml
+│   └── pseudocode/
+│       └── ExecutionAlgorithm.md
+├── Documents/                  # Original academic report (PDF)
+└── CargoShipmentTracker-GUI.zip (ready for GitHub upload)
+```
+
+## How to Build and Run
+
+### Using IDE (Recommended)
+1. Open the `src/main/java` folder as a project in IntelliJ IDEA, Eclipse, or VS Code with Java extensions.
+2. Run `com.cargotracker.gui.CargoTrackerGUI` as the main class.
+
+### Command Line
+```bash
+cd CargoShipmentTracker-GUI
+javac -d out $(find src -name "*.java")
+java -cp out com.cargotracker.gui.CargoTrackerGUI
+```
+
+The application launches with 4 pre-loaded demo shipments for immediate interaction.
+
+## Architecture Highlights
+
+- **Model-View-Controller style**: `CargoCompany` remains the single source of truth. GUI panels observe and mutate it.
+- **Strategy Pattern**: Original `Comparator` constants still available.
+- **State Machine**: Fully enforced via `ShipmentStatus.canGoTo(...)`.
+- **Custom Rendering**: Status badges with semantic colors in the table.
+- **Live Computation**: Cost and insurance preview update as you type.
+
+## PlantUML Diagrams
+
+See `docs/uml/` for source `.puml` files. Render with:
+- PlantUML online (plantuml.com/plantuml)
+- Or local: `java -jar plantuml.jar *.puml`
+
+## Future Enhancements (Optional)
+
+- Full reactive updates via PropertyChangeSupport or observer pattern.
+- Dark mode toggle.
+- Integration with FlatLaf for even more modern L&F.
+- Barcode/QR simulation for shipments.
+- Multi-user or database backend.
+
+## Academic & Portfolio Value
+
+This GUI demonstrates:
+- Advanced Swing (JTable models, custom renderers, CardLayout, dialogs, menu bars)
+- Event-driven programming and validation
+- Clean separation of concerns
+- Professional UI/UX design principles
+- Backward compatibility with original console logic
+
+Perfect addition to a GitHub profile for OOP, Java desktop development, and software engineering courses.
+
+---
+
+**Original Console Application**: Preserved in spirit and logic. The GUI is a superior presentation layer.
+
+**Author / Maintainer**: Atabey Aydı – Enhanced for EE1004 Spring 2026 and professional portfolio.
+
+For the LaTeX report extension (including screenshots, GUI class diagrams, and design rationale), please let me know and I will generate the updated `.tex` sections or full document.
