@@ -97,7 +97,7 @@ This GUI demonstrates:
 - Backward compatibility with original console logic
 
 Full design discussion, UML class diagram, testing tables, and references are in
-the [academic report](Documents/EE1004_Group14_Project14_Report.pdf).
+the [academic report](documents/EE1004_Group14_CargoShipmentTracker_JavaGUI-LaTeX_Report.pdf).
 
 ---
 
