@@ -96,12 +96,41 @@ This GUI demonstrates:
 - Professional UI/UX design principles
 - Backward compatibility with original console logic
 
-Perfect addition to a GitHub profile for OOP, Java desktop development, and software engineering courses.
+Full design discussion, UML class diagram, testing tables, and references are in
+the [academic report](Documents/EE1004_Group14_Project14_Report.pdf).
 
 ---
 
 **Original Console Application**: Preserved in spirit and logic. The GUI is a superior presentation layer.
 
-**Author / Maintainer**: Atabey Aydı – Enhanced for EE1004 Spring 2026 and professional portfolio.
+## Member Contributions – GUI Edition
 
-For the LaTeX report extension (including screenshots, GUI class diagrams, and design rationale), please let me know and I will generate the updated `.tex` sections or full document.
+| Member | Primary Contributions |
+| :--- | :--- |
+| **Atabey Aydı** (150718503) | GUI architecture & full implementation (`MainDashboardFrame`, all panels & dialogs, live validation, custom `StatusCellRenderer`, persistence, PlantUML diagrams, report integration, data-exchange design between model and GUI) |
+| **Mehmet Açar** (150719020) | Original `Shipment` abstract base class, static ID counter, `advanceStatus`, specification `toString` format |
+| **İsmail Hanifi Nal** (150719025) | `Insurable` interface + `StandardShipment`, `ExpressShipment`, `SaneDayShipment` with rates, caps and insurance percentages |
+| **Abdulkadir Köroğlu** (150719695) | `CargoCompany` core (`registerShipment` weight guard, `HashMap` lookup, totals) |
+| **Burak Gökmen** (150720010) | Three `Comparator` strategies, `listSortedBy`, revenue & insurance summary breakdown |
+| **Alperen Tufan Pelit** (150720012) | Original console `Main` menu loop, input validation, transcript capture and testing support |
+
+---
+
+Each member committed from their own GitHub account; see the repository commit history for the full attribution.
+
+**Supervision.** Course Lecturer: Assoc. Prof. Dr. Salih Bayar. Laboratory Assistant: Res. Asst. Salih Çolakoğlu.
+
+---
+
+## Academic context
+
+This repository is the source-code deliverable for **Project 14 (Cargo Shipment Tracker)** of EE1004 Object-Oriented Programming at Marmara University, Spring 2025–2026 semester. The accompanying technical report (PDF) is submitted via Google Classroom and follows the Marmara University Institute of Pure and Applied Sciences thesis / Faculty of Engineering graduation-project format.
+
+**Academic integrity.** All code in this repository is the original work of Group 14. External references (Java SE 11 documentation, Oracle tutorials, course slides) are cited in IEEE style in the report's References section. Any AI-assisted authoring was disclosed in the project report as required by the course policy.
+
+---
+
+## License
+
+Released for academic evaluation as part of EE1004 (Marmara University). Re-use is permitted for educational reference with attribution to Group 14.
+
