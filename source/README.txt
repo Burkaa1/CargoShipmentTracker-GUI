@@ -9,7 +9,7 @@ COURSE             : EE1004 Object Oriented Programming
 UNIVERSITY         : Marmara University
 SEMESTER           : Spring 2026
 DELIVERABLE TYPE   : Enhanced GUI Application + Documentation
-GITHUB REPO        : https://github.com/atabeyaydi/CargoShipmentTracker
+GITHUB REPO        : https://github.com/atabeyaydi/CargoShipmentTracker-GUI
 
 --------------------------------------------------------------------------------
                                 PROJECT OVERVIEW
