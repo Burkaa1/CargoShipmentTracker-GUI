@@ -102,6 +102,9 @@ public class MainDashboardFrame extends JFrame {
 
         JButton refreshBtn = new JButton("⟳ Refresh All");
         refreshBtn.setFocusPainted(false);
+        refreshBtn.setOpaque(true);
+        refreshBtn.setContentAreaFilled(true);
+        refreshBtn.setBorderPainted(true);
         refreshBtn.setBackground(new Color(0, 180, 216));
         refreshBtn.setForeground(Color.WHITE);
         refreshBtn.setFont(new Font("SansSerif", Font.BOLD, 13));
@@ -152,6 +155,10 @@ public class MainDashboardFrame extends JFrame {
         btn.setAlignmentX(Component.LEFT_ALIGNMENT);
         btn.setMaximumSize(new Dimension(200, 42));
         btn.setFocusPainted(false);
+        btn.setOpaque(true);
+        btn.setContentAreaFilled(true);
+        btn.setBorderPainted(false);
+        btn.setRolloverEnabled(true);
         btn.setBackground(new Color(30, 50, 70));
         btn.setForeground(Color.WHITE);
         btn.setFont(new Font("SansSerif", Font.PLAIN, 15));
