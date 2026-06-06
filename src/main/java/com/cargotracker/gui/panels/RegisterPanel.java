@@ -211,9 +211,10 @@ public class RegisterPanel extends JPanel {
 
             Shipment s;
             int idx = typeCombo.getSelectedIndex();
-            if (idx == 0) s = new StandardShipment(sender, recipient, dist, wt);
-            else if (idx == 1) s = new ExpressShipment(sender, recipient, dist, wt);
-            else s = new SameDayShipment(sender, recipient, dist, wt);
+            int nextId = company.getShipmentCount() + 1;
+            if (idx == 0) s = new StandardShipment(nextId, sender, recipient, dist, wt);
+            else if (idx == 1) s = new ExpressShipment(nextId, sender, recipient, dist, wt);
+            else s = new SameDayShipment(nextId, sender, recipient, dist, wt);
 
             company.registerShipment(s);
 

@@ -22,12 +22,20 @@ public abstract class Shipment implements Insurable, Serializable {
     protected final double weightKg;
     protected ShipmentStatus status = ShipmentStatus.PENDING;
 
-    protected Shipment(String sender, String recipient, double distanceKm, double weightKg) {
-        this.id         = ++counter;
+    protected Shipment(int id, String sender, String recipient, double distanceKm, double weightKg) {
+        this.id         = id;
         this.sender     = sender;
         this.recipient  = recipient;
         this.distanceKm = distanceKm;
         this.weightKg   = weightKg;
+    }
+
+    protected Shipment(String sender, String recipient, double distanceKm, double weightKg) {
+        this(++counter, sender, recipient, distanceKm, weightKg);
+    }
+
+    public static void setNextId(int nextId) {
+        counter = nextId - 1;
     }
 
     // ---- subclass-specific values (Standard / Express / SameDay) -----------

@@ -15,6 +15,10 @@ public class SameDayShipment extends Shipment implements Serializable {
         super(sender, recipient, distanceKm, weightKg);
     }
 
+    public SameDayShipment(int id, String sender, String recipient, double distanceKm, double weightKg) {
+        super(id, sender, recipient, distanceKm, weightKg);
+    }
+
     @Override public double getRatePerKm()     { return RATE_PER_KM; }
     @Override public double getMaxWeightKg()   { return MAX_WEIGHT_KG; }
     @Override public String typeLabel()        { return "SameDay"; }
