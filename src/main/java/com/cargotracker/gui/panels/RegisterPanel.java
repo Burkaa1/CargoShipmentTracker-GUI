@@ -181,10 +181,14 @@ public class RegisterPanel extends JPanel {
         clearBtn.addActionListener(e -> clearForm());
 
         registerBtn = new JButton("✓ Register Shipment");
+        
         registerBtn.setBackground(new Color(16, 185, 129));
-        registerBtn.setForeground(Color.WHITE);
+        // registerBtn.setForeground(Color.WHITE);
         registerBtn.setFont(new Font("SansSerif", Font.BOLD, 15));
         registerBtn.setFocusPainted(false);
+        registerBtn.setOpaque(true);
+        registerBtn.setContentAreaFilled(true);
+        registerBtn.setBorderPainted(true);
         registerBtn.setBorder(BorderFactory.createEmptyBorder(10, 24, 10, 24));
         registerBtn.addActionListener(e -> performRegistration());
 

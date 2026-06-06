@@ -62,6 +62,15 @@ public class CargoCompany implements Serializable {
         shipmentById.put(s.getId(), s);
     }
 
+    public boolean deleteShipment(int id) {
+        Shipment removed = shipmentById.remove(id);
+        if (removed == null) {
+            return false;
+        }
+        shipments.remove(removed);
+        return true;
+    }
+
     // ----- queries ----------------------------------------------------------
     public Shipment findById(int id) {
         return shipmentById.get(id);           // O(1), no linear search

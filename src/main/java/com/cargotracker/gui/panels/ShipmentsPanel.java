@@ -90,14 +90,30 @@ public class ShipmentsPanel extends JPanel {
         JPanel bar = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 0));
         bar.setOpaque(false);
 
+        JButton deleteBtn = new JButton("Delete Selected");
+        /*
+        deleteBtn.setBackground(new Color(220, 38, 38));
+        deleteBtn.setForeground(Color.WHITE);
+        deleteBtn.setOpaque(true);
+        deleteBtn.setContentAreaFilled(true);
+        deleteBtn.setBorderPainted(true);
+        */
+        deleteBtn.addActionListener(e -> deleteSelectedShipment());
+
         JButton detailsBtn = new JButton("View Details");
         detailsBtn.addActionListener(e -> showDetails());
 
         JButton updateBtn = new JButton("Advance Status");
         updateBtn.setBackground(new Color(59, 130, 246));
+        /*
         updateBtn.setForeground(Color.WHITE);
+        updateBtn.setOpaque(true);
+        updateBtn.setContentAreaFilled(true);
+        updateBtn.setBorderPainted(true);
+        */
         updateBtn.addActionListener(e -> advanceStatusForSelected());
 
+        bar.add(deleteBtn);
         bar.add(detailsBtn);
         bar.add(updateBtn);
         return bar;
@@ -134,6 +150,30 @@ public class ShipmentsPanel extends JPanel {
         }
         Shipment s = tableModel.getShipmentAt(table.convertRowIndexToModel(row));
         new ShipmentDetailDialog(parentFrame, s).setVisible(true);
+    }
+
+    private void deleteSelectedShipment() {
+        int row = table.getSelectedRow();
+        if (row < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a shipment to delete.", "No Selection", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        Shipment s = tableModel.getShipmentAt(table.convertRowIndexToModel(row));
+        int choice = JOptionPane.showConfirmDialog(this,
+                "Delete shipment ID " + s.getId() + " for " + s.getSender() + "?",
+                "Confirm Delete", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+
+        if (choice != JOptionPane.YES_OPTION) {
+            return;
+        }
+
+        if (company.deleteShipment(s.getId())) {
+            refresh();
+            JOptionPane.showMessageDialog(this, "Shipment deleted successfully.", "Delete Complete", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Unable to delete the selected shipment.", "Delete Failed", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     private void advanceStatusForSelected() {

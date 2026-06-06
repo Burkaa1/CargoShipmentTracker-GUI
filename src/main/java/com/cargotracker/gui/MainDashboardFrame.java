@@ -106,7 +106,7 @@ public class MainDashboardFrame extends JFrame {
         refreshBtn.setContentAreaFilled(true);
         refreshBtn.setBorderPainted(true);
         refreshBtn.setBackground(new Color(0, 180, 216));
-        refreshBtn.setForeground(Color.WHITE);
+        refreshBtn.setForeground(Color.BLUE);
         refreshBtn.setFont(new Font("SansSerif", Font.BOLD, 13));
         refreshBtn.setBorder(BorderFactory.createEmptyBorder(8, 16, 8, 16));
         refreshBtn.addActionListener(e -> refreshAllPanels());
