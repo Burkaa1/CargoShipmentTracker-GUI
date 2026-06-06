@@ -1,4 +1,4 @@
-# CargoShipmentTracker - GUI Edition
+# CargoShipmentTracker - GUI
 
 **Modern Java Swing Graphical User Interface for Professional Cargo Shipment Tracking**
 
