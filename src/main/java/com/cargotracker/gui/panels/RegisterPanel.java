@@ -181,7 +181,7 @@ public class RegisterPanel extends JPanel {
         clearBtn.addActionListener(e -> clearForm());
 
         registerBtn = new JButton("✓ Register Shipment");
-        
+
         registerBtn.setBackground(new Color(16, 185, 129));
         // registerBtn.setForeground(Color.WHITE);
         registerBtn.setFont(new Font("SansSerif", Font.BOLD, 15));
@@ -229,6 +229,11 @@ public class RegisterPanel extends JPanel {
         } catch (IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Capacity Error", JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    public void refresh() {
+        updateWeightLimit();
+        updatePreview();
     }
 
     private void clearForm() {

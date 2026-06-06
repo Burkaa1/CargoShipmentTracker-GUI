@@ -56,7 +56,7 @@ public class StatusUpdateDialog extends JDialog {
 
         JButton confirm = new JButton("Update Status");
         confirm.setBackground(new Color(59, 130, 246));
-        confirm.setForeground(Color.WHITE);
+        // confirm.setForeground(Color.WHITE);
         confirm.addActionListener(e -> {
             ShipmentStatus next = (ShipmentStatus) statusCombo.getSelectedItem();
             if (next != null && next != shipment.getStatus()) {

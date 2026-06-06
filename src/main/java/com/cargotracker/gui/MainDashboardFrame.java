@@ -165,13 +165,7 @@ public class MainDashboardFrame extends JFrame {
         btn.setBorder(BorderFactory.createEmptyBorder(10, 16, 10, 16));
         btn.setHorizontalAlignment(SwingConstants.LEFT);
 
-        btn.addActionListener(e -> {
-            cardLayout.show(contentPanel, cardName);
-            // Refresh the target panel
-            if ("DASHBOARD".equals(cardName)) dashboardPanel.refresh();
-            else if ("SHIPMENTS".equals(cardName)) shipmentsPanel.refresh();
-            else if ("REPORTS".equals(cardName)) reportsPanel.refresh();
-        });
+        btn.addActionListener(e -> showCard(cardName));
 
         // Simple hover effect
         btn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -238,6 +232,14 @@ public class MainDashboardFrame extends JFrame {
         menuBar.add(viewMenu);
         menuBar.add(helpMenu);
         return menuBar;
+    }
+
+    public void showCard(String cardName) {
+        cardLayout.show(contentPanel, cardName);
+        if ("DASHBOARD".equals(cardName)) dashboardPanel.refresh();
+        else if ("REGISTER".equals(cardName)) registerPanel.refresh();
+        else if ("SHIPMENTS".equals(cardName)) shipmentsPanel.refresh();
+        else if ("REPORTS".equals(cardName)) reportsPanel.refresh();
     }
 
     private void refreshAllPanels() {

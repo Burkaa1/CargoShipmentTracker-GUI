@@ -23,6 +23,7 @@ public class DashboardPanel extends JPanel {
     private JLabel totalRevenueLabel;
     private JLabel totalInsuranceLabel;
     private JLabel pendingLabel;
+    private JTextArea recentArea;
 
     public DashboardPanel(CargoCompany company, MainDashboardFrame parentFrame) {
         this.company = company;
@@ -122,16 +123,10 @@ public class DashboardPanel extends JPanel {
         ));
 
         JButton regBtn = new JButton("➕ Register New Shipment");
-        regBtn.addActionListener(e -> parentFrame.requestGlobalRefresh()); // placeholder navigation in real would switch card
-        // In full app the parent switches card; here we simulate by message
-        regBtn.addActionListener(e -> {
-            JOptionPane.showMessageDialog(this, "Navigate to 'Register Shipment' using the left sidebar.", "Quick Action", JOptionPane.INFORMATION_MESSAGE);
-        });
+        regBtn.addActionListener(e -> parentFrame.showCard("REGISTER"));
 
         JButton manageBtn = new JButton("📋 Manage Shipments");
-        manageBtn.addActionListener(e -> {
-            JOptionPane.showMessageDialog(this, "Navigate to 'Manage Shipments' using the left sidebar to view table and update status.", "Quick Action", JOptionPane.INFORMATION_MESSAGE);
-        });
+        manageBtn.addActionListener(e -> parentFrame.showCard("SHIPMENTS"));
 
         actions.add(regBtn);
         actions.add(Box.createVerticalStrut(8));
@@ -145,19 +140,12 @@ public class DashboardPanel extends JPanel {
                 new EmptyBorder(8, 8, 8, 8)
         ));
 
-        JTextArea recentArea = new JTextArea();
+        recentArea = new JTextArea();
         recentArea.setEditable(false);
         recentArea.setFont(new Font("Monospaced", Font.PLAIN, 12));
         recentArea.setBackground(new Color(250, 250, 252));
 
-        List<Shipment> all = company.getAllShipments();
-        StringBuilder sb = new StringBuilder();
-        int count = 0;
-        for (int i = all.size() - 1; i >= 0 && count < 4; i--, count++) {
-            Shipment s = all.get(i);
-            sb.append(s.toString()).append("\n");
-        }
-        recentArea.setText(sb.length() > 0 ? sb.toString() : "No shipments yet. Register some from the sidebar.");
+        refreshRecentShipments();
 
         recent.add(new JScrollPane(recentArea), BorderLayout.CENTER);
 
@@ -168,7 +156,6 @@ public class DashboardPanel extends JPanel {
     }
 
     public void refresh() {
-        // Update KPI values
         int total = company.getShipmentCount();
         double rev = company.getTotalRevenue();
         double ins = company.getTotalInsurance();
@@ -177,13 +164,27 @@ public class DashboardPanel extends JPanel {
                 .filter(s -> s.getStatus() == ShipmentStatus.PENDING || s.getStatus() == ShipmentStatus.IN_TRANSIT)
                 .count();
 
-        // Find and update labels (simple approach: re-create or use client properties)
-        // For demo we use JOption or just print; in real we would store references to value labels.
-        // Simplified refresh message for Phase 1 completeness:
-        System.out.println("[Dashboard] KPIs refreshed: " + total + " shipments, Revenue: " + String.format("%.2f", rev));
+        if (totalShipmentsLabel != null) totalShipmentsLabel.setText(String.valueOf(total));
+        if (totalRevenueLabel != null) totalRevenueLabel.setText(String.format("%.2f TL", rev));
+        if (totalInsuranceLabel != null) totalInsuranceLabel.setText(String.format("%.2f TL", ins));
+        if (pendingLabel != null) pendingLabel.setText(String.valueOf(pendingOrTransit));
 
-        // For visual update we can re-validate the panel
+        refreshRecentShipments();
+
         revalidate();
         repaint();
+    }
+
+    private void refreshRecentShipments() {
+        if (recentArea == null) return;
+
+        List<Shipment> all = company.getAllShipments();
+        StringBuilder sb = new StringBuilder();
+        int count = 0;
+        for (int i = all.size() - 1; i >= 0 && count < 4; i--, count++) {
+            Shipment s = all.get(i);
+            sb.append(s.toString()).append("\n");
+        }
+        recentArea.setText(sb.length() > 0 ? sb.toString() : "No shipments yet. Register some from the sidebar.");
     }
 }
