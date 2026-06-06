@@ -103,6 +103,23 @@ the [academic report](documents/EE1004_Group14_CargoShipmentTracker_JavaGUI-LaTe
 
 **Original Console Application**: Preserved in spirit and logic. The GUI is a superior presentation layer.
 
+## Screenshots
+
+### About Cargo Shipment Tracker
+![About CargoTrack Pro](documents/screenshots/About-CargoShipmentTracker.png)
+
+### Dashboard Overview
+![Dashboard Overview](documents/screenshots/DashboardOverview.png)
+
+### Manage Shipments
+![Manage Shipments](documents/screenshots/ManageShipments.png)
+
+### Register New Shipment
+![Register New Shipment](documents/screenshots/RegisterNewShipments.png)
+
+### Reports & Analytics
+![Reports & Analytics](documents/screenshots/Reports&Analytics.png)
+
 ## Member Contributions – GUI Edition
 
 | Member | Primary Contributions |
