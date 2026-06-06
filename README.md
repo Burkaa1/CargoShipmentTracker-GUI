@@ -127,7 +127,7 @@ the [academic report](documents/EE1004_Group14_CargoShipmentTracker_JavaGUI-LaTe
 | **Atabey Aydı** (150718503) | GUI architecture & full implementation (`MainDashboardFrame`, all panels & dialogs, live validation, custom `StatusCellRenderer`, persistence, PlantUML diagrams, report integration, data-exchange design between model and GUI) |
 | **Mehmet Açar** (150719020) | Original `Shipment` abstract base class, static ID counter, `advanceStatus`, specification `toString` format |
 | **İsmail Hanifi Nal** (150719025) | `Insurable` interface + `StandardShipment`, `ExpressShipment`, `SaneDayShipment` with rates, caps and insurance percentages |
-| **Abdulkadir Köroğlu** (150719695) | `CargoCompany` core (`registerShipment` weight guard, `HashMap` lookup, totals) |
+| **Abdulkadir Köroğlu** (150719695) | `CargoCompany` core (`registerShipment` weight guard, `HashMap` lookup, totals format) |
 | **Burak Gökmen** (150720010) | Three `Comparator` strategies, `listSortedBy`, revenue & insurance summary breakdown |
 | **Alperen Tufan Pelit** (150720012) | Original console `Main` menu loop, input validation, transcript capture and testing support |
 
