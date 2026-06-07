@@ -73,6 +73,7 @@ The application launches with 4 pre-loaded demo shipments for immediate interact
 - **Custom Rendering**: Status badges with semantic colors in the table.
 - **Live Computation**: Cost and insurance preview update as you type.
 
+
 ## PlantUML Diagrams
 
 See `docs/uml/` for source `.puml` files. Render with:
@@ -86,6 +87,10 @@ See `docs/uml/` for source `.puml` files. Render with:
 - Integration with FlatLaf for even more modern L&F.
 - Barcode/QR simulation for shipments.
 - Multi-user or database backend.
+- Export/Import capabilities.
+- Map API Integration
+- Advanced Data Validation & Duplication Prevention
+- Notification Module
 
 ## Academic & Portfolio Value
 
@@ -95,6 +100,8 @@ This GUI demonstrates:
 - Clean separation of concerns
 - Professional UI/UX design principles
 - Backward compatibility with original console logic
+- Strict business rules implementation
+- Solid principles application
 
 Full design discussion, UML class diagram, testing tables, and references are in
 the [academic report](documents/EE1004_Group14_CargoShipmentTracker_JavaGUI-LaTeX_Report.pdf).
